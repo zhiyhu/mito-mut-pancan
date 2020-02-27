@@ -1,4 +1,3 @@
-
 library(ggplot2)
 ### GO - mitochondian
 
@@ -26,7 +25,7 @@ for(itor in 1:length(filenames)){
     data$Sample_ID <- as.factor(data$Sample_ID)
     
     mut <- data
-    mut <- mut[mut$filter == "PASS" & mut$effect %in% mut_type,]
+    mut <- mut[mut$filter == "PASS" & mut$effect %in% mut_type,] # only used passed mutations
     
     mito.mut <- data[data$gene %in% mito.gene,]
     mito.mut <- mito.mut[mito.mut$filter == "PASS" & mito.mut$effect %in% mut_type,]
@@ -46,6 +45,8 @@ for(itor in 1:length(filenames)){
     }
 }
 head(df)
+
+# write.csv(df, "Mut_counts_by_patients.csv", row.names = F)
 
 acronym <- read.delim2(header = F, file = "~/TCGA/acronym_list.txt")
 acronym$V1 <- gsub(pattern = "GDC TCGA ", replacement = "", x = acronym$V1)
@@ -86,3 +87,6 @@ ggplot(df_filtered, aes(x = mut_freq.Freq,  y = mito_freq.Freq)) +
 
 median(df_filtered$percentage[df_filtered$cancer == "Kidney Clear Cell Carcinoma"])
 median(df_filtered$percentage[df_filtered$cancer != "Kidney Clear Cell Carcinoma"], na.rm = T)
+
+
+# write.csv(data.frame(table(df$cancer)), "patient_number_by_cancer_types.csv")
