@@ -1,4 +1,4 @@
-# pan-cancer analysis of somatic mutations located at mitochondrial genes
+# A pan-cancer analysis of somatic mutations located at mitochondrial genes
 
 This repository analysed the distribution of somatic mutations located in mitochondrial genes cross pan-cancer genomes.
 
